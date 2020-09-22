@@ -27,22 +27,26 @@
       </tr>
 
         <?php
+
+        $parser=new ParseCSV(PRIVATE_PATH.'/used_bicycles.csv');
+        $bike_array=$parser->parse();
+        print_r($bike_array);
         $args=['brand'=>'Trek','model'=>'Emoda','year'=>'2017','category'=>'Road','gender'=>'male','color'=>"black",'weight_kg'=>'1.5','price'=>'1000.00'];
         $bike=new Bicycle($args);
 
 
         ?>
 
-        <?php for ($i=0;$i<=10;$i++) { ?>
+        <?php for ($i=0;$i<=1;$i++) { ?>
       <tr>
         <td><?php echo h($bike->brand); ?></td>
-        <td><?php echo $bike->model; ?></td>
-        <td><?php echo $bike->year; ?></td>
-        <td><?php echo $bike->category; ?></td>
-        <td><?php echo $bike->gender; ?></td>
-        <td><?php echo $bike->color; ?></td>
+        <td><?php echo h($bike->model); ?></td>
+        <td><?php echo h($bike->year); ?></td>
+        <td><?php echo h($bike->category); ?></td>
+        <td><?php echo h($bike->gender); ?></td>
+        <td><?php echo h($bike->color); ?></td>
         <td><?php echo h($bike->weight_kg().'/'.$bike->weight_lbs()); ?></td>
-        <td><?php echo $bike->condition(); ?></td>
+        <td><?php echo h($bike->condition()); ?></td>
         <td><?php echo h(money_format('$%i',$bike->price)); ?></td>
       </tr>
 
