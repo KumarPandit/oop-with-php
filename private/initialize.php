@@ -25,7 +25,15 @@
   require_once('functions.php');
   
   // Load class definitions manually
+foreach(glob('classes/*.class.php') as $file) {
+  require_once($file);
+}
 
-  // Autoload class definitions
-
+// Autoload class definitions
+function my_autoload($class) {
+  if(preg_match('/\A\w+\Z/', $class)) {
+    include('classes/' . $class . '.class.php');
+  }
+}
+spl_autoload_register('my_autoload');
 ?>
